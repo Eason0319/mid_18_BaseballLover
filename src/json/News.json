@@ -1,0 +1,23 @@
+[
+        {
+            "NewsImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewsImg1.png?raw=true",
+            "NewsContent": "Betts hits season's 1st HR, drives in 6 and wins a new car",
+            "Key": "N1"
+        },
+        {
+            "NewsImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewsImg2.png?raw=true",
+            "NewsContent": "Which rotations stand above the rest? We ranked them",
+            "Key": "N2"
+        },
+        {
+            "NewsImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewsImg3.png?raw=true",
+            "NewsContent": "Arozarena crushes homer ... then signs for fans!",
+            "Key": "N3"
+        },
+        {
+            "NewsImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewsImg4.png?raw=true",
+            "NewsContent": "Stats and figures behind Baltimore's historic start to the season",
+            "Key": "N4"
+        }
+
+]
