@@ -12,10 +12,12 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from '../screens/HomeScreen';
-import DetailScreen from '../screens/DetailScreen';
-import WishlistScreen from '../screens/WishListScreen';
-import MyBookScreen from '../screens/MyBookScreen';
+import ShopScreen from '../screens/ShopScreen';
+import SceduleScreen from '../screens/ScheduleScreen';
+import SettingScreen from '../screens/SettingScreen';
 import MyTheme from '../Theme';
+import MerchDetailScreen from '../screens/MerchDetailScreen';
+import CustomDrawerContent from '../components/CustomDrawerContent';
 
 
 const Stack = createNativeStackNavigator();
@@ -23,28 +25,7 @@ const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 
-/*const CustomDrawerContent = (props) => {
-  const { colors } = useTheme();
 
-  return (
-    <DrawerContentScrollView {...props}
-      contentContainerStyle={{ paddingTop: 0 }}
-    >
-      <Image
-        w={10}
-        h={10}
-        marginTop={20}
-        margin={5}
-        source={require("../img/UserImg.png")}
-        alt='userImage'
-      />
-      <Text style={styles.user}>May</Text>
-      <Divider my="2" />
-      <DrawerItemList {...props} />
-
-    </DrawerContentScrollView> 
-  );
-}*/
 
 const MyTabs = () => {
   const { colors } = useTheme();
@@ -54,7 +35,6 @@ const MyTabs = () => {
       initialRouteName="HomeStack"
       screenOptions={{
         tabBarActiveTintColor: '#6200EE',
-        // headerShown: false
       }}
     >
       <Tab.Screen
@@ -63,7 +43,6 @@ const MyTabs = () => {
         options={{
           headerShown: false,
           title: "Home",
-          titleStyle: { fontWeight: 'bold' },
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
@@ -71,7 +50,7 @@ const MyTabs = () => {
       />
       <Tab.Screen
         name="ShopScreen"
-        component={WishlistScreen}
+        component={ShopStack}
         options={{
           headerShown: false,
           title: "Shop",
@@ -82,7 +61,7 @@ const MyTabs = () => {
       />
       <Tab.Screen
         name="ScheduleScreen"
-        component={WishlistScreen}
+        component={ScheduleStack}
         options={{
           headerShown: false,
           title: "Schedule",
@@ -93,7 +72,7 @@ const MyTabs = () => {
       />
       <Tab.Screen
         name="SettingScreen"
-        component={MyBookScreen}
+        component={SettingScreen}
         options={{
           headerShown: false,
           title: "Setting",
@@ -114,10 +93,11 @@ const MyDrawer = () => {
         drawerActiveBackgroundColor: 'white',
         drawerActiveTintColor: '#6200EE',
         drawerInactiveTintColor: 'gray',
-        drawerStyle: { width: 250 },
-        drawerLabelStyle: { fontSize: 18, fontWeight: '400' }
+        drawerStyle: { width: 300, },
+        drawerLabelStyle: { fontSize: 24, fontWeight: '400' ,marginLeft: -20},
+        drawerItemStyle:{marginLeft: 30}
       }}
-      /*drawerContent={props => <CustomDrawerContent{...props} />}*/
+      drawerContent={props => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen
         name="Mytabs"
@@ -126,27 +106,67 @@ const MyDrawer = () => {
           headerShown: false,
           drawerLabel: "Home",
           drawerIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <MaterialCommunityIcons name="home" color={color} size={30} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="MLB.TV"
+        component={SceduleScreen}
+        options={{
+          title: "MLB.TV",
+          drawerIcon: ({ color }) => (
+            <MaterialCommunityIcons name="baseball" color={color} size={30} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Scores"
+        component={SceduleScreen}
+        options={{
+          title: "Scores",
+          drawerIcon: ({ color }) => (
+            <MaterialCommunityIcons name="scoreboard" color={color} size={30} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Stats"
+        component={SceduleScreen}
+        options={{
+          title: "Stats",
+          drawerIcon: ({ color }) => (
+            <MaterialCommunityIcons name="signal-cellular-3" color={color} size={30} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Players"
+        component={SceduleScreen}
+        options={{
+          title: "Players",
+          drawerIcon: ({ color }) => (
+            <MaterialCommunityIcons name="account-group" color={color} size={30} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Tickets"
+        component={SceduleScreen}
+        options={{
+          title: "Tickets",
+          drawerIcon: ({ color }) => (
+            <MaterialCommunityIcons name="ticket-confirmation" color={color} size={30} />
           ),
         }}
       />
       <Drawer.Screen
         name="AccountStack"
-        component={MyBookScreen}
+        component={SceduleScreen}
         options={{
           title: "Account",
           drawerIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account-circle" color={color} size={26} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="SettingStack"
-        component={MyBookScreen}
-        options={{
-          title: "Setting",
-          drawerIcon: ({ color }) => (
-            <MaterialCommunityIcons name="cog" color={color} size={26} />
+            <MaterialCommunityIcons name="account-circle" color={color} size={30} />
           ),
         }}
       />
@@ -155,11 +175,6 @@ const MyDrawer = () => {
 }
 
 const HomeStack = ({ navigation }) => {
-  const [toggle, setToggle] = useState(true);
-  const toggleFunction = () => {
-    setToggle(!toggle);
-  };
-
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -167,48 +182,102 @@ const HomeStack = ({ navigation }) => {
         component={HomeScreen}
         options={{
           title: "BaseballLover",
-          headerTitleStyle: {fontSize: 36, fontWeight: 800},
           headerLeft: () => (
             <MaterialCommunityIcons
               name={'menu'}
-              size={20}
+              size={28}
               onPress={() => navigation.openDrawer()}
               style={{ marginRight: 20 }}
             />
           ),
           headerRight: () => (
             <MaterialCommunityIcons
-              name={'magnify'}
+              name={'cart'}
+              size={28}
+            />
+          )
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+const ShopStack = ({ navigation }) => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Shop"
+        component={ShopScreen}
+        options={{
+          title: "BaseballLover",
+          headerLeft: () => (
+            <MaterialCommunityIcons
+              name={'menu'}
+              size={28}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginRight: 20 }}
+            />
+          ),
+          headerRight: () => (
+            <MaterialCommunityIcons
+              name={'cart'}
               size={28}
             />
           )
         }}
       />
       <Stack.Screen
-        name="Detail"
-        component={DetailScreen}
+        name="MerchDetail"
+        component={MerchDetailScreen}
         options={({ route }) => ({
-          title: "",
+          title: "BaseballLover",
           headerLeft: () => (
             <MaterialCommunityIcons
               name={'chevron-left'}
               size={30}
-              onPress={() => navigation.goBack(null)}
+              onPress={() => navigation.navigate('Shop')}
               style={{ marginLeft: 0 }}
             />
           ),
           headerRight: () => (
-            <Pressable onPress={() => toggleFunction()}>
-              {toggle ? <MaterialCommunityIcons name={'bookmark-outline'} color={'black'} size={26} /> :
-                <MaterialCommunityIcons name={'bookmark'} color={'#6200EE'} size={26} />}
-            </Pressable>
-          ),
+            <MaterialCommunityIcons
+              name={'cart'}
+              size={28}
+            />
+          )
         })}
       />
     </Stack.Navigator>
   );
 }
 
+const ScheduleStack = ({ navigation }) => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Schedule"
+        component={SceduleScreen}
+        options={{
+          title: "BaseballLover",
+          headerLeft: () => (
+            <MaterialCommunityIcons
+              name={'menu'}
+              size={28}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginRight: 20 }}
+            />
+          ),
+          headerRight: () => (
+            <MaterialCommunityIcons
+              name={'cart'}
+              size={28}
+            />
+          )
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 const Navigation = () => {
   return (
     <NavigationContainer theme={MyTheme}>
@@ -217,14 +286,7 @@ const Navigation = () => {
   );
 }
 
-const styles = StyleSheet.create({
-  user: {
-    fontSize: 24,
-    fontWeight: 500,
-    textAlign: 'left',
-    marginLeft: 20,
-    marginBottom: 20,
-  }})
+
 
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image} from "react-native";
 
 const NewsDetail = props => {
     let { News } = props;
@@ -7,7 +7,7 @@ const NewsDetail = props => {
         <View style={styles.Newsbar}>
             <Image
                 style={styles.NewsImg}
-                source={{ uri:  News.NewsImg}}
+                source={{ uri:News.NewsImg}}
             />
             <Text style={styles.NewsContent}>{News.NewsContent}</Text>
         </View>

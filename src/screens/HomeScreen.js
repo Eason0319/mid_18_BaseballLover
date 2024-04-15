@@ -1,19 +1,61 @@
 import React from "react";
-import { View, Image ,StyleSheet, Text} from "react-native";
+import { View, Image, StyleSheet, Text } from "react-native";
 import Highlightlist from "../components/HighlightList";
 import Newslist from "../components/Newslist";
+import Swiper from 'react-native-swiper'
 
 
 const HomeScreen = () => {
   return (
-    <View style={{flex: 1}}>
-      <Image
-        style={styles.imageStyle}
-        source={require("../img/HomeImg1.png")}
-        alt='HomeImage1'
-      />
+    <View style={{ flex: 1 }}>
+      <Swiper
+        removeClippedSubviews={false}
+        loop={true}                    //如果设置为false，那么滑动到最后一张时，再次滑动将不会滑到第一张图片。
+        autoplay={true}                //自动轮播
+        autoplayTimeout={3}          //每隔3秒切换
+
+        dot={<View style={{    //未选中的圆点样式
+          width: 10,
+          height: 10,
+          borderRadius: 10,
+          marginHorizontal: 5,
+          marginBottom: -20,
+          borderWidth: 2,
+          borderColor: 'white'
+        }} />}
+        activeDot={<View style={{    //选中的圆点样式
+          backgroundColor: 'white',
+          width: 10,
+          height: 10,
+          borderRadius: 10,
+          marginBottom: -20,
+          marginHorizontal: 5
+        }} />}
+      >
+          <Image
+            source={require("../img/HomeImg1.png")}
+            style={styles.imageStyle}
+          />
+          <Image
+            source={require("../img/HomeImg2.png")}
+            style={styles.imageStyle}
+          />
+          <Image
+            source={require("../img/HomeImg3.png")}
+            style={styles.imageStyle}
+          />
+          <Image
+            source={require("../img/HomeImg4.png")}
+            style={styles.imageStyle}
+          />
+          <Image
+            source={require("../img/HomeImg5.png")}
+            style={styles.imageStyle}
+          />
+      </Swiper>
       <Highlightlist />
       <Newslist />
+
     </View>
   );
 };
@@ -21,42 +63,9 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   imageStyle: {
     width: 380,
-    height: 214,
+    height: 220,
     marginHorizontal: 16,
     borderRadius: 10,
-  },
-  GameHighlightBarStyle: {
-    marginTop: 22,
-    marginHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  GameHighlightTextStyle:{
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginLeft: 10,
-  },
-  ViewAllTextStyle:{
-    color: "#9D9D9D",
-    alignSelf: 'flex-end',
-  },
-  HighlightContent:{
-    width: 265,
-    height: 210,
-    marginLeft: 16,
-    backgroundColor: "#D9D9D9",
-    borderRadius: 10,
-    marginTop:10,
-  },
-  HighlightImg:{
-    width: 265,
-    height: 149,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  HighlightContentText:{
-    marginLeft: 9,
-    marginTop: 6,
   }
 });
 

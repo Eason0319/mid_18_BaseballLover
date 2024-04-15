@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, FlatList, StyleSheet, Image } from "react-native";
+import { View, Text, FlatList, StyleSheet, Image} from "react-native";
 import NewsDetail from "../components/NewsDetail";
 import News from "../json/News.json";
 
 const Newslist = () => {
     return (
-        <View>
+        <View style={{flex: 1}}>
             <View style={styles.GameHighlightBarStyle}>
                 <Text style={styles.GameHighlightTextStyle}>Latest News</Text>
                 <Text style={styles.ViewAllTextStyle}>View All</Text>
