@@ -37,6 +37,13 @@ const MerchDetailScreen = ({ route }) => {
     const ThemedButton = styled.TouchableOpacity`
         background-color: ${(props) => props.theme.button};
     `;
+    const SizeButton = styled.TouchableOpacity`
+        border-color: ${(props) => props.theme.sizeButtonBorder};
+    `;
+    const SizeText = styled.Text`
+        color: ${(props) => props.theme.sizeText};
+    `;
+   
 
     const { id, HotMerchImg, MerchIntro, Price } = route.params;
 
@@ -51,12 +58,13 @@ const MerchDetailScreen = ({ route }) => {
             <ThemedText style={styles.SizeText}>Size：</ThemedText>
             <View style={styles.SizeButton}>
                 {['XS', 'S', 'M', 'L', 'XL'].map(size => (
-                    <Button
+                    <SizeButton
                         key={size}
                         style={[styles.button, selectedButton === size && styles.selectedButton]}
                         onPress={() => handleButtonPress(size)}>
-                        <ThemedText style={[styles.buttonText, selectedButton === size && styles.selectedButtonText]}>{size}</ThemedText>
-                    </Button>
+                        <SizeText style={[styles.buttonText, selectedButton === size && styles.selectedButtonText]}>{size}</SizeText>
+                    </SizeButton>
+                    
                 ))}
             </View>
             <View style={styles.MerchCount}>
