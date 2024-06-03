@@ -1,72 +1,81 @@
 import React, { useState } from "react";
 import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from "../redux/cartSlice";
+import styled from 'styled-components/native';
+
+import { incrementCount, decrementCount, setSelectedButton } from "../redux/merchCountSlice";
 
 const MerchDetailScreen = ({ route }) => {
-    const [selectedButton, setSelectedButton] = useState(null);
-    const [count, setCount] = useState(0);
+    const dispatch = useDispatch();
+
+    const count = useSelector(state => state.merchCount.count); // 使用 useSelector 獲取全域變數 count
+    const selectedButton = useSelector(state => state.merchCount.selectedButton);
+
+
+    const handleAddToCart = () => {
+        const { id, HotMerchImg, MerchIntro, Price, } = route.params;
+        dispatch(addToCart({ id, HotMerchImg, MerchIntro, Price, count, selectedButton, }));
+
+    };
 
     const handleButtonPress = (buttonName) => {
-        setSelectedButton(buttonName);
-    };
-    const increaseCount = () => {
-        setCount(count + 1);
-    };
-    const decreaseCount = () => {
-        if (count > 0) {
-            setCount(count - 1);
-        }
+        dispatch(setSelectedButton(buttonName));
     };
 
-    const { HotMerchImg, MerchIntro, Price } = route.params;
+    const Container = styled.View`
+        flex: 1;
+        background-color: ${(props) => props.theme.background};
+    `;
+    const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+        border-color: ${(props) => props.theme.ButtonBorder};
+    `;
+    const Button = styled.TouchableOpacity`
+        border-color: ${(props) => props.theme.ButtonBorder};
+    `;
+    const ThemedButton = styled.TouchableOpacity`
+        background-color: ${(props) => props.theme.button};
+    `;
+
+    const { id, HotMerchImg, MerchIntro, Price } = route.params;
+
     return (
-        <View>
+        <Container>
             <Image
                 style={styles.MerchImg}
                 source={{ uri: HotMerchImg }}
             />
-            <Text style={styles.MerchIntroText}>{MerchIntro}</Text>
-            <Text style={styles.PriceText}>Price: ${Price}</Text>
-            <Text style={styles.SizeText}>Size</Text>
+            <ThemedText style={styles.MerchIntroText}>{MerchIntro}</ThemedText>
+            <ThemedText style={styles.PriceText}>Price: ${Price}</ThemedText>
+            <ThemedText style={styles.SizeText}>Size：</ThemedText>
             <View style={styles.SizeButton}>
-                <TouchableOpacity
-                    style={[styles.button, selectedButton === 'XS' && styles.selectedButton]}
-                    onPress={() => handleButtonPress('XS')}>
-                    <Text style={[styles.buttonText, selectedButton === 'XS' && styles.selectedButtonText]}>XS</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.button, selectedButton === 'S' && styles.selectedButton]}
-                    onPress={() => handleButtonPress('S')}>
-                    <Text style={[styles.buttonText, selectedButton === 'S' && styles.selectedButtonText]}>S</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.button, selectedButton === 'M' && styles.selectedButton]}
-                    onPress={() => handleButtonPress('M')}>
-                    <Text style={[styles.buttonText, selectedButton === 'M' && styles.selectedButtonText]}>M</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.button, selectedButton === 'L' && styles.selectedButton]}
-                    onPress={() => handleButtonPress('L')}>
-                    <Text style={[styles.buttonText, selectedButton === 'L' && styles.selectedButtonText]}>L</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.button, selectedButton === 'XL' && styles.selectedButton]}
-                    onPress={() => handleButtonPress('XL')}>
-                    <Text style={[styles.buttonText, selectedButton === 'XL' && styles.selectedButtonText]}>XL</Text>
-                </TouchableOpacity>
+                {['XS', 'S', 'M', 'L', 'XL'].map(size => (
+                    <Button
+                        key={size}
+                        style={[styles.button, selectedButton === size && styles.selectedButton]}
+                        onPress={() => handleButtonPress(size)}>
+                        <ThemedText style={[styles.buttonText, selectedButton === size && styles.selectedButtonText]}>{size}</ThemedText>
+                    </Button>
+                ))}
             </View>
             <View style={styles.MerchCount}>
-                <TouchableOpacity style={styles.countButton} onPress={decreaseCount}>
-                    <Text style={styles.countButtonText}>-</Text>
-                </TouchableOpacity>
-                <Text style={styles.countText}>{count}</Text>
-                <TouchableOpacity style={styles.countButton} onPress={increaseCount}>
-                    <Text style={styles.countButtonText}>+</Text>
-                </TouchableOpacity>
+                <Button style={styles.countButton} onPress={() => dispatch(decrementCount())}>
+                    <ThemedText style={styles.countButtonText}>-</ThemedText>
+                </Button>
+                <Button>
+                    <ThemedText style={styles.countText}>{count}</ThemedText>
+                </Button>
+                <Button style={styles.countButton} onPress={() => dispatch(incrementCount())}>
+                    <ThemedText style={styles.countButtonText}>+</ThemedText>
+                </Button>
             </View>
-            <TouchableOpacity style={styles.AddButton}>
-                <Text style={styles.AddText}>Add To Cart</Text>
-            </TouchableOpacity>
-        </View>
+            <ThemedButton style={styles.AddButton}
+                onPress={handleAddToCart}
+            >
+                <ThemedText style={styles.AddText}>Add To Cart</ThemedText>
+            </ThemedButton>
+        </Container>
     );
 }
 
@@ -100,11 +109,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     button: {
+        borderWidth: 2,
         width: 41,
         height: 32,
         borderRadius: 5,
-        borderWidth: 2,
-        borderColor: '#ACACAC'
+    },
+    buttonText: {
+        fontSize: 20,
+        textAlign: 'center',
     },
     selectedButton: {
         // Change color to indicate selection
@@ -113,11 +125,7 @@ const styles = StyleSheet.create({
     selectedButtonText: {
         color: 'black'
     },
-    buttonText: {
-        fontSize: 20,
-        textAlign: 'center',
-        color: '#ACACAC'
-    },
+
     MerchCount: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
@@ -128,7 +136,6 @@ const styles = StyleSheet.create({
         width: 41,
         height: 32,
         borderRadius: 5,
-        borderColor: 'black'
     },
     countButtonText: {
         fontSize: 20,
@@ -144,7 +151,6 @@ const styles = StyleSheet.create({
     },
     AddButton: {
         width: 277,
-        backgroundColor: '#9D9D9D',
         alignSelf: 'center',
         marginTop: 20,
         paddingVertical: 10,

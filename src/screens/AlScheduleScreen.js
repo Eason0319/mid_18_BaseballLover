@@ -3,31 +3,46 @@ import { View, Image, StyleSheet, Text, TouchableOpacity, } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ScheduleList from "../components/ScheduleList";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
+import styled from 'styled-components/native';
+import { useTheme } from '../Theme/themeProvider';
 
 const AlScheduleScreen = () => {
 
     const [showPicker, setShowPicker] = useState(false);
     const [datevalue, setdatevalue] = useState(new Date());
+    const { theme, toggleTheme } = useTheme();
+
+    const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+    `;
+
+    const addDays = (date, days) => {
+        const result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+      };
 
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.DateBar}>
                 <MaterialCommunityIcons
                     name="chevron-left"
-                    color='black'
+                    color={theme.text}
                     size={35}
                     style={styles.chevronIcon}
+                    onPress={() => setdatevalue(addDays(datevalue, -1))}
                 />
-                <Text style={styles.DateText}>{datevalue.toDateString()}</Text>
+                <ThemedText style={styles.DateText}>{datevalue.toDateString()}</ThemedText>
                 <MaterialCommunityIcons
                     name="chevron-right"
-                    color='black'
+                    color={theme.text}
                     size={35}
                     style={styles.chevronIcon}
+                    onPress={() => setdatevalue(addDays(datevalue, 1))}
                 />
                 <MaterialCommunityIcons
                     name="calendar"
-                    color='black'
+                    color={theme.text}
                     size={35}
                     style={styles.chevronIcon}
                     onPress={() => setShowPicker(!showPicker)}
