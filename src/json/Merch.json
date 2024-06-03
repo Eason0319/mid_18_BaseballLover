@@ -3,17 +3,20 @@
         "title": "Hot Merch",
         "data": [
             {
-                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/HotMerch1.png?raw=true",
+                "id": "1",
+                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/HotMerch01.png?raw=true",
                 "Price": "174.99",
                 "MerchIntro": "Men's Los Angeles Dodgers Shohei Ohtani Nike White Home Limited Player Jersey"
             },
             {
-                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/HotMerch2.png?raw=true",
+                "id": "2",
+                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/HotMerch02.png?raw=true",
                 "Price": "134.99",
                 "MerchIntro": "Men's Atlanta Braves Ronald Acuna Jr. Nike Navy Alternate Replica Player Name Jersey"
             },
             {
-                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/HotMerch3.png?raw=true",
+                "id": "3",
+                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/HotMerch03.png?raw=true",
                 "Price": "27.74",
                 "MerchIntro": "Men's Los Angeles Dodgers New Era Royal Team Color Trucker 9FIFTY Snapback Hat"
             }
@@ -23,17 +26,20 @@
         "title": "What's New",
         "data": [
             {
-                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewMerch1.png?raw=true",
+                "id": "4",
+                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewMerch01.png?raw=true",
                 "Price": "134.99",
                 "MerchIntro": "Men's Los Angeles Dodgers Yoshinobu Yamamoto Nike White Home Replica Player Jersey"
             },
             {
-                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewMerch2.png?raw=true",
+                "id": "5",
+                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewMerch02.png?raw=true",
                 "Price": "155.00",
                 "MerchIntro": "Men's Tampa Bay Rays Nike Navy Away Limited Jersey"
             },
             {
-                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewMerch3.png?raw=true",
+                "id": "6",
+                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/NewMerch03.png?raw=true",
                 "Price": "20.99",
                 "MerchIntro": "Women's Milwaukee Brewers Fanatics Branded Navy Go For It Strappy V-Neck Tank Top"
             }
@@ -43,15 +49,15 @@
         "title": "Category",
         "data":[
             {
-                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/CategoryImg1.png?raw=true",
+                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/CategoryImg01.png?raw=true",
                 "type": "Jersey"
             },
             {
-                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/CategoryImg2.png?raw=true",
+                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/CategoryImg02.png?raw=true",
                 "type": "Caps"
             },
             {
-                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/CategoryImg3.png?raw=true",
+                "HotMerchImg": "https://github.com/Eason0319/mid_18_BaseballLover/blob/main/src/img/CategoryImg03.png?raw=true",
                 "type": "Tradding Cards"
             }
         ]
