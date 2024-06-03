@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, Divider, Image, Text, Pressable } from 'react-native';
-import { NavigationContainer, useTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
@@ -10,12 +10,13 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useTheme } from '../Theme/themeProvider';
 
 import HomeScreen from '../screens/HomeScreen';
 import ShopScreen from '../screens/ShopScreen';
 import SceduleScreen from '../screens/ScheduleScreen';
 import SettingScreen from '../screens/SettingScreen';
-import MyTheme from '../Theme';
+import ShoppingCartScreen from '../screens/SoppingCartScreen';
 import MerchDetailScreen from '../screens/MerchDetailScreen';
 import CustomDrawerContent from '../components/CustomDrawerContent';
 
@@ -28,13 +29,17 @@ const Drawer = createDrawerNavigator();
 
 
 const MyTabs = () => {
-  const { colors } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <Tab.Navigator
       initialRouteName="HomeStack"
       screenOptions={{
-        tabBarActiveTintColor: '#6200EE',
+        tabBarStyle: {
+          backgroundColor: theme.background,
+        },
+        tabBarActiveTintColor: theme.text,
+        tabBarInactiveTintColor: theme.text,
       }}
     >
       <Tab.Screen
@@ -72,7 +77,7 @@ const MyTabs = () => {
       />
       <Tab.Screen
         name="SettingScreen"
-        component={SettingScreen}
+        component={SettingStack}
         options={{
           headerShown: false,
           title: "Setting",
@@ -94,8 +99,8 @@ const MyDrawer = () => {
         drawerActiveTintColor: '#6200EE',
         drawerInactiveTintColor: 'gray',
         drawerStyle: { width: 300, },
-        drawerLabelStyle: { fontSize: 24, fontWeight: '400' ,marginLeft: -20},
-        drawerItemStyle:{marginLeft: 30}
+        drawerLabelStyle: { fontSize: 24, fontWeight: '400', marginLeft: -20 },
+        drawerItemStyle: { marginLeft: 30 }
       }}
       drawerContent={props => <CustomDrawerContent {...props} />}
     >
@@ -175,8 +180,19 @@ const MyDrawer = () => {
 }
 
 const HomeStack = ({ navigation }) => {
+  const { theme } = useTheme();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.background,
+        },
+        headerTintColor: theme.text,
+        headerTitleStyle: {
+          color: theme.text,
+        },
+      }}
+    >
       <Stack.Screen
         name="Home"
         component={HomeScreen}
@@ -185,6 +201,7 @@ const HomeStack = ({ navigation }) => {
           headerLeft: () => (
             <MaterialCommunityIcons
               name={'menu'}
+              color={theme.text}
               size={28}
               onPress={() => navigation.openDrawer()}
               style={{ marginRight: 20 }}
@@ -193,7 +210,9 @@ const HomeStack = ({ navigation }) => {
           headerRight: () => (
             <MaterialCommunityIcons
               name={'cart'}
+              color={theme.text}
               size={28}
+              onPress={() => navigation.navigate('ShoppingCart')}
             />
           )
         }}
@@ -203,8 +222,19 @@ const HomeStack = ({ navigation }) => {
 }
 
 const ShopStack = ({ navigation }) => {
+  const { theme } = useTheme();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.background,
+        },
+        headerTintColor: theme.text,
+        headerTitleStyle: {
+          color: theme.text,
+        },
+      }}
+    >
       <Stack.Screen
         name="Shop"
         component={ShopScreen}
@@ -213,6 +243,7 @@ const ShopStack = ({ navigation }) => {
           headerLeft: () => (
             <MaterialCommunityIcons
               name={'menu'}
+              color={theme.text}
               size={28}
               onPress={() => navigation.openDrawer()}
               style={{ marginRight: 20 }}
@@ -221,7 +252,9 @@ const ShopStack = ({ navigation }) => {
           headerRight: () => (
             <MaterialCommunityIcons
               name={'cart'}
+              color={theme.text}
               size={28}
+              onPress={() => navigation.navigate('ShoppingCart')}
             />
           )
         }}
@@ -235,6 +268,7 @@ const ShopStack = ({ navigation }) => {
             <MaterialCommunityIcons
               name={'chevron-left'}
               size={30}
+              color={theme.text}
               onPress={() => navigation.navigate('Shop')}
               style={{ marginLeft: 0 }}
             />
@@ -242,9 +276,28 @@ const ShopStack = ({ navigation }) => {
           headerRight: () => (
             <MaterialCommunityIcons
               name={'cart'}
+              color={theme.text}
               size={28}
+              onPress={() => navigation.navigate('ShoppingCart')}
             />
           )
+        })}
+      />
+      <Stack.Screen
+        name="ShoppingCart"
+        component={ShoppingCartScreen}
+        options={({ route }) => ({
+          title: "BaseballLover",
+          headerLeft: () => (
+            <MaterialCommunityIcons
+              name={'chevron-left'}
+              color={theme.text}
+              size={30}
+              onPress={() => navigation.navigate('Shop')}
+              style={{ marginLeft: 0 }}
+            />
+          ),
+
         })}
       />
     </Stack.Navigator>
@@ -252,8 +305,19 @@ const ShopStack = ({ navigation }) => {
 }
 
 const ScheduleStack = ({ navigation }) => {
+  const { theme } = useTheme();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.background,
+        },
+        headerTintColor: theme.text,
+        headerTitleStyle: {
+          color: theme.text,
+        },
+      }}
+    >
       <Stack.Screen
         name="Schedule"
         component={SceduleScreen}
@@ -262,6 +326,7 @@ const ScheduleStack = ({ navigation }) => {
           headerLeft: () => (
             <MaterialCommunityIcons
               name={'menu'}
+              color={theme.text}
               size={28}
               onPress={() => navigation.openDrawer()}
               style={{ marginRight: 20 }}
@@ -270,7 +335,9 @@ const ScheduleStack = ({ navigation }) => {
           headerRight: () => (
             <MaterialCommunityIcons
               name={'cart'}
+              color={theme.text}
               size={28}
+              onPress={() => navigation.navigate('ShoppingCart')}
             />
           )
         }}
@@ -278,9 +345,52 @@ const ScheduleStack = ({ navigation }) => {
     </Stack.Navigator>
   );
 }
+
+const SettingStack = ({ navigation }) => {
+  const { theme } = useTheme();
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.background,
+        },
+        headerTintColor: theme.text,
+        headerTitleStyle: {
+          color: theme.text,
+        },
+      }}
+    >
+      <Stack.Screen
+        name="Setting"
+        component={SettingScreen}
+        options={{
+          title: "BaseballLover",
+          headerLeft: () => (
+            <MaterialCommunityIcons
+              name={'menu'}
+              color={theme.text}
+              size={28}
+              onPress={() => navigation.openDrawer()}
+              style={{ marginRight: 20 }}
+            />
+          ),
+          headerRight: () => (
+            <MaterialCommunityIcons
+              name={'cart'}
+              color={theme.text}
+              size={28}
+              onPress={() => navigation.navigate('ShoppingCart')}
+            />
+          )
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 const Navigation = () => {
   return (
-    <NavigationContainer theme={MyTheme}>
+    <NavigationContainer >
       <MyDrawer />
     </NavigationContainer>
   );
