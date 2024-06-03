@@ -1,9 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import styled from 'styled-components/native';
 
 
 const ShopCategoryDetail = props => {
     let { Merch } = props;
+    const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+    `;
+    
     return(
         <View>
             <View style={styles.MerchContent}>
@@ -11,7 +16,7 @@ const ShopCategoryDetail = props => {
                     style={styles.MerchImg}
                     source={{ uri: Merch.HotMerchImg}}
                 />
-                <Text style={styles.MerchTypeText}>{Merch.type}</Text>
+                <ThemedText style={styles.MerchTypeText}>{Merch.type}</ThemedText>
             </View>
         </View>
     );

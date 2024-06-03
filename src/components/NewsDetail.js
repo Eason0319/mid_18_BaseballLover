@@ -1,15 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet, Image} from "react-native";
+import styled from 'styled-components/native';
 
 const NewsDetail = props => {
     let { News } = props;
+    const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+    `;
+
     return (
         <View style={styles.Newsbar}>
             <Image
                 style={styles.NewsImg}
                 source={{ uri:News.NewsImg}}
             />
-            <Text style={styles.NewsContent}>{News.NewsContent}</Text>
+            <ThemedText style={styles.NewsContent}>{News.NewsContent}</ThemedText>
         </View>
     );
 };

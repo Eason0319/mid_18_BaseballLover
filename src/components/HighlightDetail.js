@@ -1,19 +1,28 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Pressable, Linking } from "react-native";
+import styled from 'styled-components/native';
 
 const HighlightDetail = props => {
   let { highlight } = props;
+
+  const ThemedText = styled.Text`
+    color: ${(props) => props.theme.text};
+    `;
+  const HighLightBox = styled.View`
+    background-color: ${(props) => props.theme.highLightBox};
+    `;
+
   return (
     <View style={{ flexDirection: 'column' }}>
-      <View style={styles.HighlightContent}>
-        <Pressable onPress={() => Linking.openURL(highlight.url)}>
-          <Image
-            style={styles.HighlightImg}
-            source={{ uri: highlight.HighlightImg }}
-          />
-        </Pressable>
-        <Text style={styles.HighlightContentText}>{highlight.content}</Text>
-      </View>
+        <HighLightBox style={styles.HighlightContent}>
+          <Pressable onPress={() => Linking.openURL(highlight.url)}>
+            <Image
+              style={styles.HighlightImg}
+              source={{ uri: highlight.HighlightImg }}
+            />
+          </Pressable>
+          <ThemedText style={styles.HighlightContentText}>{highlight.content}</ThemedText>
+        </HighLightBox>
     </View>
 
   )
@@ -38,15 +47,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 10,
   },
-  ViewAllTextStyle: {
-    color: "#9D9D9D",
-    alignSelf: 'flex-end',
-  },
   HighlightContent: {
     width: 265,
     height: 210,
     marginLeft: 16,
-    backgroundColor: "#D9D9D9",
     borderRadius: 10,
     marginTop: 10,
   },

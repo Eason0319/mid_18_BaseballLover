@@ -4,15 +4,21 @@ import ScheduleDetail from "./ScheduleDetail";
 import NLScheduleDetail from "./NLScheduleDetail";
 import Schedule from "../json/Schedule.json";
 import NLSchedule from "../json/NLSchedule";
+import styled from 'styled-components/native';
+
 
 
 const ScheduleList = () => {
+    const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+        `;
+
     return (
             <SectionList
                 sections={Schedule}
 
                 renderSectionHeader={({ section }) => (
-                    <Text style={styles.ActualDate}>{section.date}</Text>
+                    <ThemedText style={styles.ActualDate}>{section.date}</ThemedText>
                 )}
                 renderItem={({ item }) => <ScheduleDetail Schedule={item} />}
                 keyExtractor={item => item.key}
@@ -21,11 +27,16 @@ const ScheduleList = () => {
 }
 
 const NLScheduleList = () => {
+
+    const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+        `;
+        
     return (
         <SectionList
             sections={NLSchedule}
             renderSectionHeader={({ section }) => (
-                <Text style={styles.ActualDate}>{section.date}</Text>
+                <ThemedText style={styles.ActualDate}>{section.date}</ThemedText>
             )}
             renderItem={({ item }) => <NLScheduleDetail NLSchedule={item} />}
             keyExtractor={item => item.key}

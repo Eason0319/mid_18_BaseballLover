@@ -2,15 +2,19 @@ import React from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import HighlightDetail from "./HighlightDetail";
 import section from "../json/highlight_section.json";
+import styled from 'styled-components/native';
+
+const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+    `;
 
 const Highlightlist = () => {
   
-
   return (
     <View>
       <View style={styles.GameHighlightBarStyle}>
-        <Text style={styles.GameHighlightTextStyle}>Game Highlights</Text>
-        <Text style={styles.ViewAllTextStyle}>View All</Text>
+        <ThemedText style={styles.GameHighlightTextStyle}>Game Highlights</ThemedText>
+        <ThemedText style={styles.ViewAllTextStyle}>View All</ThemedText>
       </View>
       <FlatList
         horizontal={true}
@@ -35,7 +39,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   ViewAllTextStyle:{
-    color: "#9D9D9D",
     alignSelf: 'flex-end',
   },
 })

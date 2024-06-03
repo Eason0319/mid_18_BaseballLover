@@ -1,24 +1,29 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import styled from 'styled-components/native';
 
 const NLScheduleDetail = props => {
     let { NLSchedule } = props;
+    const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+        `;
+
     return (
         <View style={{flex: 1}}>
-            <Text style={styles.ActualDate}>{NLSchedule.date}</Text>
+            <ThemedText style={styles.ActualDate}>{NLSchedule.date}</ThemedText>
             <View style={styles.MatchBar}>
                 <Image
                     style={styles.TeamImg}
                     source={{ uri: NLSchedule.Team1Img }}
                 />
-                <Text style={{ fontSize: 20, alignSelf: 'center' }}>@</Text>
+                <ThemedText style={{ fontSize: 20, alignSelf: 'center' }}>@</ThemedText>
                 <Image
                     style={styles.TeamImg}
                     source={{ uri: NLSchedule.Team2Img }}
                 />
                 <View style={styles.MatchContentText}>
-                    <Text style={{ fontSize: 16 }}>{NLSchedule.MatchTime}</Text>
+                    <ThemedText style={{ fontSize: 16 }}>{NLSchedule.MatchTime}</ThemedText>
                     <Text style={{ fontSize: 16, color: '#ACACAC' }}>{NLSchedule.Broadcast}</Text>
                 </View>
                 <MaterialCommunityIcons

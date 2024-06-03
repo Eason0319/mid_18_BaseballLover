@@ -3,37 +3,41 @@ import { View, Text, FlatList, StyleSheet, Image, ScrollView } from "react-nativ
 import ShopDetail from "./ShopDetail";
 import ShopCategoryDetail from "./ShopCategoryDetail";
 import Merch from "../json/Merch.json";
+import styled from 'styled-components/native';
 
-const Shoplist = ({navigation}) => {
+const Shoplist = ({ navigation }) => {
 
+    const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+    `;
 
     return (
         <ScrollView>
             <View style={styles.HotMerchBar}>
-                <Text style={styles.HotMerchText}>Hot Merch</Text>
+                <ThemedText style={styles.HotMerchText}>Hot Merch</ThemedText>
             </View>
             <FlatList
                 horizontal={true}
                 data={Merch[0].data}
-                renderItem={({ item }) => <ShopDetail Merch={item} navigation={navigation}/>}
+                renderItem={({ item }) => <ShopDetail Merch={item} navigation={navigation} />}
                 keyExtractor={item => item.title}
             />
             <View style={styles.HotMerchBar}>
-                <Text style={styles.HotMerchText}>What's New</Text>
+                <ThemedText style={styles.HotMerchText}>What's New</ThemedText>
             </View>
             <FlatList
                 horizontal={true}
                 data={Merch[1].data}
-                renderItem={({ item }) => <ShopDetail Merch={item} navigation={navigation}/>}
+                renderItem={({ item }) => <ShopDetail Merch={item} navigation={navigation} />}
                 keyExtractor={item => item.title}
             />
             <View style={styles.HotMerchBar}>
-                <Text style={styles.HotMerchText}>Category</Text>
+                <ThemedText style={styles.HotMerchText}>Category</ThemedText>
             </View>
             <FlatList
                 horizontal={true}
                 data={Merch[2].data}
-                renderItem={({ item }) => <ShopCategoryDetail Merch={item}/>}
+                renderItem={({ item }) => <ShopCategoryDetail Merch={item} />}
                 keyExtractor={item => item.title}
             />
         </ScrollView>

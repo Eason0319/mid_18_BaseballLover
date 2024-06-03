@@ -2,13 +2,19 @@ import React from "react";
 import { View, Text, FlatList, StyleSheet, Image} from "react-native";
 import NewsDetail from "../components/NewsDetail";
 import News from "../json/News.json";
+import styled from 'styled-components/native';
 
 const Newslist = () => {
+
+    const ThemedText = styled.Text`
+        color: ${(props) => props.theme.text};
+    `;
+
     return (
         <View style={{flex: 1}}>
             <View style={styles.GameHighlightBarStyle}>
-                <Text style={styles.GameHighlightTextStyle}>Latest News</Text>
-                <Text style={styles.ViewAllTextStyle}>View All</Text>
+                <ThemedText style={styles.GameHighlightTextStyle}>Latest News</ThemedText>
+                <ThemedText style={styles.ViewAllTextStyle}>View All</ThemedText>
             </View>
             <FlatList
                 data={News}
@@ -32,7 +38,6 @@ const styles = StyleSheet.create({
         marginLeft: 10,
       },
       ViewAllTextStyle:{
-        color: "#9D9D9D",
         alignSelf: 'flex-end',
       },
 })

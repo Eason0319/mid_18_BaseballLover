@@ -4,6 +4,7 @@ import {
     DrawerContentScrollView,
     DrawerItemList,
 } from '@react-navigation/drawer';
+import { useTheme } from '../Theme/themeProvider';
 
 const CustomDrawerContent = (props) => {
 
@@ -18,6 +19,7 @@ const CustomDrawerContent = (props) => {
                             height: 127,
                             marginLeft: 30,
                             marginTop: 19
+                            
                         }}
                     />
                     <Text style={styles.user}>Username</Text>
