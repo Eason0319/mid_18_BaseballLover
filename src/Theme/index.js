@@ -16,6 +16,8 @@ export const lightTheme = {
   text: 'black',
   highLightBox: '#D9D9D9',
   ButtonBorder: 'black',
+  sizeButtonBorder:'#ACACAC',
+  sizeText:'#ACACAC',
   SegmentedControlBg:'#fffff',
   ActivedSegmentedControlBg: '#7B7B7B',
   SegmentedControlText:'black',
@@ -28,10 +30,13 @@ export const darkTheme = {
   text: '#ffffff',
   highLightBox: '#1A1A1A',
   ButtonBorder: '#ffffff',
+  sizeButtonBorder:'#ffffff',
+  sizeText:'#ffffff',
   SegmentedControlBg:'gray',
   ActivedSegmentedControlBg: 'black',
   SegmentedControlText:'black',
   SegmentedControlText:'#ffffff',
+  sizeButtonBorder:'#ffffff',
   button:'#1A1A1A',
   settingBar:'#1A1A1A'
 };
